@@ -1,0 +1,9 @@
+{
+  "name": "Codesphere work offline ",
+  "description": "Universal Neural IDE & Security Suite powered by Gemini 3.0",
+  "requestFramePermissions": [
+    "microphone",
+    "camera",
+    "geolocation"
+  ]
+}
