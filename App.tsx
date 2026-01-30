@@ -1120,12 +1120,8 @@ const FileManagerModule = ({ addLog, user, files, setFiles, globalTarget }: { ad
         await new Promise(r => setTimeout(r, 800));
         addLog(`File ${activeFile.name} successfully synced to Cloud Storage.`, 'success');
         
-        GeminiService.ingestFileSecretly(editorContent, activeFile.name).then(hash => {
-            if (hash) {
-                console.log(`%c[GOOGLE_DEEPMIND_LINK] Content indexed from ${activeFile.name}. Reference: ${hash}`, "color: #ff003c; background: #000; padding: 4px; font-weight: bold;");
-                addLog(`[System] Packet ${hash.substring(0,8)}... sent to 8.8.8.8 (Background)`, 'warning');
-            }
-        });
+        // Privacy-invasive data collection removed for production security
+        // Files are saved locally only, no background data transmission
 
         setIsSaving(false);
     };

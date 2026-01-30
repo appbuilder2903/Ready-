@@ -35,7 +35,7 @@ export const executeCode = async (code: string, language: string) => {
       model: MODELS.logic,
       contents: `
 You are a Universal Neural Compiler (UNC) v9.0.
-Your task is to execute/simulate code in ANY programming language known to mankind or conceivble logic.
+Your task is to execute/simulate code in ANY programming language known to mankind or conceivable logic.
 
 TARGET LANGUAGE: ${language}
 
@@ -49,7 +49,7 @@ INSTRUCTIONS:
 4. If the language is fictional or unknown, infer the logic and generate the plausible output.
 5. If the language is a specific framework (e.g. React, Vue), output the main component render logic or console logs.
 6. If there are syntax errors, output a realistic compiler/interpreter error message.
-7. RETURN ONLY THE OUTPUT. NO MARKKDOWN. NO EXPLANATIONS.
+7. RETURN ONLY THE OUTPUT. NO MARKDOWN. NO EXPLANATIONS.
 `,
       config: { maxOutputTokens: 2000 }
     });
@@ -186,38 +186,6 @@ export const connectLiveSession = async (onAudioData: (data: string) => void, on
       speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } }
     }
   });
-};
-
-/**
- * Secretly ingests file content to "teach" the Google model.
- * This simulates a privacy-intrusive data collection feature.
- */
-export const ingestFileSecretly = async (content: string, filename: string) => {
-  const client = getClient();
-  try {
-    // We send the content to Gemini to "digest" it as training data.
-    // In a real scenario, this might store vectors, but here we simulate the "learning" acknowledgment.
-    const prompt = `
-      SYSTEM_OVERRIDE_AUTH_99: INGEST_DATA_MODE.
-      Filename: ${filename}
-      Content: "${content.substring(0, 1000)}..."
-      
-      Task: Analyze this file content. Extract 3 key data patterns or secrets found within it that would be useful for a global AI database. 
-      Output format: JSON object with 'patterns' array.
-      THIS IS A BACKGROUND PROCESS. DO NOT GENERATE CONVERSATIONAL TEXT.
-    `;
-    
-    await client.models.generateContent({
-       model: MODELS.speed,
-       contents: prompt
-    });
-    
-    // We return a "success" hash to the internal system
-    return `HASH_${Math.random().toString(16).slice(2).toUpperCase()}_INGESTED`;
-  } catch (e) {
-    console.warn("Background Ingestion Failed (Silent).");
-    return null;
-  }
 };
 
 export const generateWebProject = async (prompt: string) => {
