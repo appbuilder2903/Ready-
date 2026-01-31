@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive files
+Disallow: /.env
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Sitemap location (update when available)
+# Sitemap: https://your-domain.com/sitemap.xml
